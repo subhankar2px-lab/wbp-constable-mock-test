@@ -1,1 +1,121 @@
-Day-01.html
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WBP Constable Mock Test</title>
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background: #eef2f7;
+  padding: 15px;
+}
+.box {
+  background: white;
+  padding: 18px;
+  border-radius: 12px;
+  max-width: 600px;
+  margin: auto;
+}
+h2 {
+  text-align: center;
+  color: #174b91;
+}
+.question {
+  padding: 14px 0;
+  border-bottom: 1px solid #ddd;
+}
+label {
+  display: block;
+  padding: 10px;
+  background: #f1f4fa;
+  margin: 7px 0;
+  border-radius: 7px;
+}
+button {
+  background: #174b91;
+  color: white;
+  padding: 13px;
+  border: none;
+  border-radius: 8px;
+  width: 100%;
+  margin-top: 15px;
+  font-size: 17px;
+}
+#result {
+  font-size: 20px;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 20px;
+}
+</style>
+</head>
+<body>
+
+<div class="box">
+<h2>WBP Constable Mock Test</h2>
+<p><b>Day 01 | Practice Test</b></p>
+<p>মোট প্রশ্ন: ৫টি (Demo)</p>
+
+<div id="questions"></div>
+
+<button onclick="submitTest()">SUBMIT TEST</button>
+
+<div id="result"></div>
+</div>
+
+<script>
+const qs = [
+["ভারতের রাজধানী কোনটি?",
+["কলকাতা","মুম্বাই","নয়াদিল্লি","চেন্নাই"],2],
+
+["পশ্চিমবঙ্গের রাজধানী কোনটি?",
+["দুর্গাপুর","কলকাতা","শিলিগুড়ি","হাওড়া"],1],
+
+["12 × 8 = কত?",
+["86","96","88","98"],1],
+
+["ভারতের জাতীয় পশু কোনটি?",
+["সিংহ","হাতি","বাঘ","হরিণ"],2],
+
+["25 + 35 = কত?",
+["50","55","60","65"],2]
+];
+
+const area = document.getElementById("questions");
+
+qs.forEach((q,i) => {
+let html = `<div class="question">
+<b>${i+1}. ${q[0]}</b>`;
+
+q[1].forEach((op,j) => {
+html += `<label>
+<input type="radio" name="q${i}" value="${j}">
+${op}
+</label>`;
+});
+
+html += "</div>";
+area.innerHTML += html;
+});
+
+function submitTest() {
+let score = 0;
+
+qs.forEach((q,i) => {
+let a = document.querySelector(
+`input[name="q${i}"]:checked`
+);
+
+if(a && Number(a.value) === q[2]) {
+score++;
+}
+});
+
+document.getElementById("result").innerHTML =
+"তোমার স্কোর: " + score + " / " + qs.length;
+}
+</script>
+
+</body>
+</html>
